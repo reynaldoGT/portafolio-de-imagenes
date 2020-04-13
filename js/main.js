@@ -40,7 +40,12 @@ agregarEventos = () => {
 // =============================
 
 const barraBusqueda = () => {
+    const formulario = document.querySelector('#formulario');
+    formulario.addEventListener('submit', (e) => {
+        e.preventDefault();
+    })
     document.querySelector('#barra-busqueda').addEventListener('input', (evento) => {
+
         const busqueda = evento.target.value;
         // es mostrar solamente los elemtnso que cumplan con estas caracteristicas, lo cual pe pasamos una funcion que tiene le parametro de item, lo que va hacer lo que por cada una de las imagen, el elemento de la imagen y obtener el dataset de la imagen y si obtiene el elemento de la busqueda lo va mostrar
         grid.filter((item) => item.getElement().dataset.etiquetas.includes(busqueda))
@@ -54,12 +59,12 @@ const barraBusqueda = () => {
 overLayListener = () => {
     const overlay = document.getElementById('overlay');
     document.querySelectorAll('.grid .item img').forEach((elemento) => {
-        
+
         elemento.addEventListener('click', () => {
             // obtener el elemento padre de este elemento
             const ruta = elemento.getAttribute('src');
             const descripcion = elemento.parentElement.parentNode.dataset.descripcion;
-            
+
             // añadiendo la clase de activo
             overlay.classList.add('activo');
             // cambiando los elementos de src y descripcion por el elemento seleccionado
